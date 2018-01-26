@@ -2,8 +2,7 @@ var Candy = require('../models/Candy');
 
 // GET ALL
 function getAll(req, res){
-  var candies = req.body;
-  Candy.find(candies, function(err, data){
+  Candy.find({}, function(err, data){
     if(err){ 
       console.log("there was an error: "+ err); 
     }
