@@ -14,9 +14,11 @@ function getAll(req, res){
 
 // POST
 function createCandy(req, res){
-  var candyname = req.body.name;
-  var candycolor = req.body.color;
-  var candy = Candy.create({name: candyname, color: candycolor}, function(err){
+
+  var candyname = req.body.newCandyName;
+  var candycolor = req.body.newCandyColor;
+
+  var candy = Candy.create({name: candyname, color: candycolor}, function(err, newCandy){
     if (err) res.json({
       message: 'Could not create candy: ' + err
     });
@@ -29,8 +31,7 @@ function getCandy(req, res) {
   var id = req.params.id;
   Candy.findById({_id: id}, function(err, candy) {
     if(err) res.json({message: 'Could not find candy b/c:' + err});
-    res.render('./partials/candy/edit', {candy: candy});
-    // res.json({candy: candy});
+    res.render('./candy/edit', {candy: candy});
   });
 }
 
